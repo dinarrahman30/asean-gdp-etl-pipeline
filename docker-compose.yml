@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # 1. Data Warehouse (PostgreSQL)
+  postgres-dw:
+    image: docker.io/library/postgres:15
+    container_name: postgres-dw
+    restart: unless-stopped
+    # Mengambil variabel dari file .env yang baru saja kamu buat
+    env_file:
+      - .env
+    # Memetakan variabel .env milikmu ke format yang dikenali oleh image PostgreSQL
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      # Menyimpan data database secara permanen di volume lokal
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - de_network
+
+  # 2. Visualisasi (Grafana)
+  grafana-viz:
+    image: docker.io/grafana/grafana:latest
+    container_name: grafana-viz
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      # Menyimpan settingan dan dashboard Grafana secara permanen
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - postgres-dw
+    networks:
+      - de_network
+
+# Mendefinisikan jaringan agar Postgres dan Grafana bisa saling komunikasi
+networks:
+  de_network:
+    driver: bridge
+
+# Mendefinisikan tempat penyimpanan permanen (Persistent Storage)
+volumes:
+  postgres_data:
+  grafana_data:
