@@ -6,7 +6,7 @@
 [![Podman](https://img.shields.io/badge/Podman-Containerization-892CA0.svg)](https://podman.io)
 [![Grafana](https://img.shields.io/badge/Grafana-Visualization-F46800.svg)](https://grafana.com)
 
-An end-to-end Data Engineering portfolio project that extracts, transforms, and loads (ETL) Gross Domestic Product (GDP) data of ASEAN countries using the **World Bank REST API**.
+An end-to-end Data Engineering portfolio project that extracts, transforms, and loads (ETL) Gross Domestic Product (GDP) data of ASEAN countries (1960-2024) using the **World Bank REST API**.
 
 This project demonstrates how to build a modern data pipeline using **Python**, orchestrated with **Prefect**, stored in **PostgreSQL**, and visualized in **Grafana**, all containerized with **Podman** for easy and consistent deployment.
 
