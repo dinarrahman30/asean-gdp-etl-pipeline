@@ -6,55 +6,39 @@
 [![Podman](https://img.shields.io/badge/Podman-Containerization-892CA0.svg)](https://podman.io)
 [![Grafana](https://img.shields.io/badge/Grafana-Visualization-F46800.svg)](https://grafana.com)
 
-An end-to-end Data Engineering portfolio project that extracts, transforms, and loads (ETL) Gross Domestic Product (GDP) data of ASEAN countries (1960-2024) using the **World Bank REST API**.
+> An end-to-end Data Engineering portfolio project that extracts, transforms, and loads (ETL) Gross Domestic Product (GDP) data of ASEAN countries (1960-2024) using the **World Bank REST API**.
+
+---
 
 This project demonstrates how to build a modern data pipeline using **Python**, orchestrated with **Prefect**, stored in **PostgreSQL**, and visualized in **Grafana**, all containerized with **Podman** for easy and consistent deployment.
 
 ---
 
-## 🏗️ Architecture & Data Flow
-
-```mermaid
-flowchart TD
-    subgraph SOURCE ["📡 DATA SOURCE"]
-        A["🌐 World Bank REST API\n/v2/country/.../indicator/NY.GDP.MKTP.CD"]
-    end
-
-    subgraph EXTRACT ["📥 EXTRACT"]
-        B1["🔗 HTTP GET Request\nretries: 3 | delay: 5s"]
-        B2["📦 Parse JSON Response"]
-    end
-
-    subgraph TRANSFORM ["🔄 TRANSFORM"]
-        C1["🧹 Extract Nested Fields\ncountry.value → country"]
-        C2["✂️ Select Columns\ncountry, gdp, year"]
-        C3["🚫 Drop Null Values"]
-        C4["🔢 Convert Data Types\nyear → int, gdp → float"]
-    end
-
-    subgraph LOAD ["📤 LOAD"]
-        D1["🔐 Read .env Credentials"]
-        D2["🔌 SQLAlchemy Engine"]
-        D3[("🐘 PostgreSQL\ntable: gdp_data")]
-    end
-
-    subgraph VISUALIZE ["📊 VISUALIZE"]
-        E1["📈 Grafana Dashboard\nReal-time Charts"]
-    end
-
-    A -->|"JSON"| B1
-    B1 --> B2
-    B2 -->|"Raw List"| C1
-    C1 --> C2 --> C3 --> C4
-    C4 -->|"Clean DataFrame"| D1
-    D1 --> D2 --> D3
-    D3 -->|"SQL Query"| E1
-
-    style SOURCE fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px,color:#1B5E20
-    style EXTRACT fill:#EDE7F6,stroke:#7C4DFF,stroke-width:2px,color:#311B92
-    style TRANSFORM fill:#FFF3E0,stroke:#FF9800,stroke-width:2px,color:#E65100
-    style LOAD fill:#E3F2FD,stroke:#2196F3,stroke-width:2px,color:#0D47A1
-    style VISUALIZE fill:#FBE9E7,stroke:#FF5722,stroke-width:2px,color:#BF360C
+## 🏗️ Arsitektur Pipeline
+ 
+```
+World Bank REST API
+        │
+        ▼
+ ┌─────────────┐
+ │   EXTRACT   │  HTTP GET + retry otomatis (3x, delay 5s)
+ └──────┬──────┘
+        │ JSON
+        ▼
+ ┌─────────────┐
+ │  TRANSFORM  │  Pandas — flatten nested fields, select kolom,
+ │             │  drop null, konversi tipe data
+ └──────┬──────┘
+        │ DataFrame
+        ▼
+ ┌─────────────┐
+ │    LOAD     │  SQLAlchemy → PostgreSQL (tabel: gdp_data)
+ └──────┬──────┘
+        │ SQL Query
+        ▼
+ ┌─────────────┐
+ │  VISUALIZE  │  Grafana Dashboard — chart interaktif real-time
+ └─────────────┘
 ```
 
 | Step | Process | Description |
