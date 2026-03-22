@@ -78,4 +78,8 @@ World Bank REST API
 Link Dashboard: https://snapshots.raintank.io/dashboard/snapshot/zfitkW0t1MeNaRIkAm9S723KP5jZOpi6
 
 ---
+## Medium
+https://medium.com/@dinarrahmann/tren-pertumbuhan-pdb-gdp-negara-asean-1960-2024-71204bfbf9c6
+
+---
 *Created for portfolio showcase. [Dinar W. Rahman](https://www.linkedin.com/in/dinar-wahyu-rahman)*. 2026
