@@ -85,4 +85,14 @@ This article discusses the analysis of GDP growth trends of ASEAN countries from
 🔗 [Tren Pertumbuhan PDB (GDP) Negara ASEAN 1960–2024](https://medium.com/@dinarrahmann/tren-pertumbuhan-pdb-gdp-negara-asean-1960-2024-71204bfbf9c6)
 
 ---
+## 📬 Kontak
+
+**Dinar Rahman** — Data Engineer
+
+<!-- Sesuaikan link berikut dengan profil Anda -->
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/dinar-wahyu-rahman)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dinarrahman30)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dinarrahman30)
+
+---
 *Created for portfolio showcase. [Dinar W. Rahman](https://www.linkedin.com/in/dinar-wahyu-rahman)*. 2026
